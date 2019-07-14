@@ -55,6 +55,7 @@ public class ImageController {
         }
 
         List<String> paths = imageService.uploadImages(checkImageCompress(request), files[0]);
+        logger.info(" ===>> images file: {}", paths.toString());
         return paths.size() != 0 ? paths.get(0) : null;
     }
 
@@ -75,6 +76,7 @@ public class ImageController {
             return null;
         }
 
+        logger.info(" ===>> image files: {}", files.toString());
         return imageService.uploadImages(checkImageCompress(request), files);
     }
 

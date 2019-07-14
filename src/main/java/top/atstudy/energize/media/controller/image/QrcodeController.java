@@ -29,11 +29,14 @@ public class QrcodeController {
 
     @GetMapping("/file")
     public String generalQcCodeImage(@RequestParam String content) throws APIException, IOException, WriterException {
-        return qrcodeService.writeQrCodeFile(content);
+        String filePath = qrcodeService.writeQrCodeFile(content);
+        logger.info(" ===>> qrcode file: {}", filePath);
+        return filePath;
     }
 
     @GetMapping("/stream")
     public void generalQcCodeStream(HttpServletResponse response, @RequestParam String content) throws APIException, IOException, WriterException {
+        logger.info(" ===>> qrcode stream successful ");
         qrcodeService.writeQrCodeOutputStream(content, response.getOutputStream());
     }
 
